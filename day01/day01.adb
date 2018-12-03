@@ -5,7 +5,7 @@ with Ada.Text_IO;
 use Ada.Containers;
 use Ada.Text_IO;
 
-procedure Main is
+procedure Day01 is
    package Integer_Sets    is new Ordered_Sets (Element_Type => Integer);
    package Integer_Vectors is new Vectors (Index_Type   => Natural,
                                            Element_Type => Integer);
@@ -43,4 +43,4 @@ begin
    end loop Infinite_Loop;
 
    Put_Line ("Part 2 =" & Integer'Image (frequency));
-end Main;
+end Day01;

@@ -4,7 +4,7 @@ with Ada.Containers.Vectors;
 
 use Ada.Text_IO;
 
-procedure Main is
+procedure Day02 is
    subtype Input_String is String (1 .. 26);
 
    package String_Vectors is new Ada.Containers.Vectors (Index_Type => Natural,
@@ -80,4 +80,4 @@ begin
          end loop;
       end loop Outer_Loop;
    end;
-end Main;
+end Day02;
