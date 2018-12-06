@@ -69,7 +69,7 @@ begin
             -- Coordinate must not be on the border of the grid.
             if X = X_Begin or X = X_End or Y = Y_Begin or Y = Y_End then
                Closest_Count (Min_Index) := -1;
-            elsif Min_Count = 1 and Closest_Count (Min_Count) >= 0 then
+            elsif Min_Count = 1 and Closest_Count (Min_Index) >= 0 then
                Closest_Count (Min_Index) := Closest_Count (Min_Index) + 1;
             end if;
          end;
