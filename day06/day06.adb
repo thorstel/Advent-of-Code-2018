@@ -7,9 +7,8 @@ procedure Day06 is
       Y : Integer;
    end record;
 
-   function Manhattan_Distance (A : Coordinate;
-                                B : Coordinate) return Integer is
-     (abs (B.X - A.X) + abs (B.Y - A.Y));
+   function Manhattan_Distance (A : Coordinate; B : Coordinate) return Integer
+   is (abs (B.X - A.X) + abs (B.Y - A.Y));
 
    -- Input coordinates
    Coordinates : constant array (Positive range <>) of Coordinate :=
