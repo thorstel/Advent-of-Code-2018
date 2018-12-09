@@ -7,7 +7,7 @@ procedure Day09 is
    procedure Move_Cursor
      (List  : in     Natural_Lists.List;
       Pos   : in out Natural_Lists.Cursor;
-      Steps : in Integer)
+      Steps : in     Integer)
    is
       function "=" (X, Y : Natural_Lists.Cursor) return Boolean
         renames Natural_Lists."=";
