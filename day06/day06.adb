@@ -24,26 +24,18 @@ procedure Day06 is
 
    Closest_Count : array (Coordinates'Range) of Integer := (others => 0);
 
-   X_Begin : Integer := 1000;
-   X_End   : Integer := -1000;
-   Y_Begin : Integer := 1000;
-   Y_End   : Integer := -1000;
+   X_Begin : Integer := Integer'Last;
+   X_End   : Integer := Integer'First;
+   Y_Begin : Integer := Integer'Last;
+   Y_End   : Integer := Integer'First;
 
 begin
    -- Determine the borders of the Grid.
    for C of Coordinates loop
-      if C.X < X_Begin then
-         X_Begin := C.X;
-      end if;
-      if C.X > X_End then
-         X_End := C.X;
-      end if;
-      if C.Y < Y_Begin then
-         Y_Begin := C.Y;
-      end if;
-      if C.Y > Y_End then
-         Y_End := C.Y;
-      end if;
+      X_Begin := Integer'Min (C.X, X_Begin);
+      X_End   := Integer'Max (C.X, X_End);
+      Y_Begin := Integer'Min (C.Y, Y_Begin);
+      Y_End   := Integer'Max (C.Y, Y_End);
    end loop;
 
    -- Part 1
