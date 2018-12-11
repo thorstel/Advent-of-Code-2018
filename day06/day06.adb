@@ -42,9 +42,9 @@ begin
    for X in X_Begin .. X_End loop
       for Y in Y_Begin .. Y_End loop
          declare
-            Min_Distance : Integer := 9999;
-            Min_Index    : Positive;
-            Min_Count    : Natural;
+            Min_Distance : Integer  := Integer'Last;
+            Min_Index    : Positive := 1;
+            Min_Count    : Natural  := 0;
             Tmp_Distance : Integer;
          begin
             for I in Coordinates'Range loop

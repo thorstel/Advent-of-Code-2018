@@ -11,17 +11,17 @@ procedure Day04 is
                                           Element_Type => Hour);
 
    Time_Table              : Time_Maps.Map;
-   Most_Minutes_Guard      : Natural;
-   Most_Minutes_Max_Minute : Natural;
+   Most_Minutes_Guard      : Natural := 0;
+   Most_Minutes_Max_Minute : Natural := 0;
    Most_Minutes_Count      : Natural := 0;
-   Most_In_Minute_Guard    : Natural;
+   Most_In_Minute_Guard    : Natural := 0;
    Most_In_Minute_Count    : Natural := 0;
    Most_In_Minute          : Natural := 0;
 begin
    -- Input Setup
    declare
-      Current_Guard : Natural := 0;
-      Sleep_Start   : Natural range 0 .. 59;
+      Current_Guard : Natural               := 0;
+      Sleep_Start   : Natural range 0 .. 59 := 0;
    begin
       for Repose_Record of Repose_Records loop
          if Repose_Record.Action = Shift_Start then

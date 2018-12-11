@@ -3,6 +3,6 @@ project day01 is
     for Main use ("day01.adb");
     for Exec_Dir use ".";
     package Compiler is
-       for Switches ("Ada") use ("-g", "-O2");
+       for Switches ("Ada") use ("-Wall", "-g", "-O2");
     end Compiler;
 end day01;

@@ -15,9 +15,9 @@ procedure Day08 is
      (Input : in     Natural_Vectors.Vector;
       Index : in out Positive) return Sum_Pair
    is
-      Sums           : Sum_Pair := (0, 0);
-      Child_Nodes    : Natural  := Input (Index);
-      Metadata_Count : Natural  := Input (Index + 1);
+      Sums           : Sum_Pair         := (0, 0);
+      Child_Nodes    : constant Natural := Input (Index);
+      Metadata_Count : constant Natural := Input (Index + 1);
       Child_Sums     : array (Positive range 1 .. Child_Nodes) of Sum_Pair :=
         (others => (0, 0));
    begin
@@ -48,8 +48,8 @@ begin
    -- Input Processing
    Open (File, In_File, "input.txt");
    declare
-      Input : String  := Get_Line (File);
-      I, J  : Natural := Input'First;
+      Input : constant String := Get_Line (File);
+      I, J  : Natural         := Input'First;
    begin
       while J < Input'Last loop
          J := J + 1;
@@ -63,8 +63,8 @@ begin
 
    -- Part 1 and 2
    declare
-      Index : Positive := Inputs.First_Index;
-      Sums  : Sum_Pair := Metadata_Sums (Inputs, Index);
+      Index : Positive          := Inputs.First_Index;
+      Sums  : constant Sum_Pair := Metadata_Sums (Inputs, Index);
    begin
       Put_Line ("Part 1 =" & Natural'Image (Sums.Part1));
       Put_Line ("Part 2 =" & Natural'Image (Sums.Part2));

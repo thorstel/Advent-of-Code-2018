@@ -45,7 +45,7 @@ procedure Day05 is
       end loop;
 
       declare
-         New_Polymer : String := Result (Result'First .. Last);
+         New_Polymer : constant String := Result (Result'First .. Last);
       begin
          if Last = Polymer'Last then
             return New_Polymer;
@@ -59,7 +59,7 @@ procedure Day05 is
 begin
    Open (Input_File, In_File, "input.txt");
    declare
-      Input          : String := Get_Line (Input_File);
+      Input          : constant String := Get_Line (Input_File);
       Minimum_Length : Natural;
       Current_Length : Natural;
    begin
