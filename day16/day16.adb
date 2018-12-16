@@ -193,7 +193,9 @@ procedure Day16 is
    end Execute;
 
    Opcodes       : array (Natural range 0 .. 15) of String_Set_Vectors.Vector;
-   Opcode_Lookup : array (Natural range 0 .. 15) of Op_String;
+   Opcode_Lookup : array (Natural range 0 .. 15) of Op_String :=
+     ("addr", "addi", "mulr", "muli", "banr", "bani", "borr", "bori", "setr",
+      "seti", "gtir", "gtri", "gtrr", "eqir", "eqri", "eqrr");
 
    Part1_Count : Natural := 0;
 begin
@@ -207,71 +209,16 @@ begin
          Match_Count      : Natural                := 0;
          Possible_Opcodes : String_Sets.Set;
       begin
-         if Execute ("addr", Sample.Before, A, B, C) = Sample.After then
-            Match_Count := Match_Count + 1;
-            Possible_Opcodes.Insert ("addr");
-         end if;
-         if Execute ("addi", Sample.Before, A, B, C) = Sample.After then
-            Match_Count := Match_Count + 1;
-            Possible_Opcodes.Insert ("addi");
-         end if;
-         if Execute ("mulr", Sample.Before, A, B, C) = Sample.After then
-            Match_Count := Match_Count + 1;
-            Possible_Opcodes.Insert ("mulr");
-         end if;
-         if Execute ("muli", Sample.Before, A, B, C) = Sample.After then
-            Match_Count := Match_Count + 1;
-            Possible_Opcodes.Insert ("muli");
-         end if;
-         if Execute ("banr", Sample.Before, A, B, C) = Sample.After then
-            Match_Count := Match_Count + 1;
-            Possible_Opcodes.Insert ("banr");
-         end if;
-         if Execute ("bani", Sample.Before, A, B, C) = Sample.After then
-            Match_Count := Match_Count + 1;
-            Possible_Opcodes.Insert ("bani");
-         end if;
-         if Execute ("borr", Sample.Before, A, B, C) = Sample.After then
-            Match_Count := Match_Count + 1;
-            Possible_Opcodes.Insert ("borr");
-         end if;
-         if Execute ("bori", Sample.Before, A, B, C) = Sample.After then
-            Match_Count := Match_Count + 1;
-            Possible_Opcodes.Insert ("bori");
-         end if;
-         if Execute ("setr", Sample.Before, A, B, C) = Sample.After then
-            Match_Count := Match_Count + 1;
-            Possible_Opcodes.Insert ("setr");
-         end if;
-         if Execute ("seti", Sample.Before, A, B, C) = Sample.After then
-            Match_Count := Match_Count + 1;
-            Possible_Opcodes.Insert ("seti");
-         end if;
-         if Execute ("gtir", Sample.Before, A, B, C) = Sample.After then
-            Match_Count := Match_Count + 1;
-            Possible_Opcodes.Insert ("gtir");
-         end if;
-         if Execute ("gtri", Sample.Before, A, B, C) = Sample.After then
-            Match_Count := Match_Count + 1;
-            Possible_Opcodes.Insert ("gtri");
-         end if;
-         if Execute ("gtrr", Sample.Before, A, B, C) = Sample.After then
-            Match_Count := Match_Count + 1;
-            Possible_Opcodes.Insert ("gtrr");
-         end if;
-         if Execute ("eqir", Sample.Before, A, B, C) = Sample.After then
-            Match_Count := Match_Count + 1;
-            Possible_Opcodes.Insert ("eqir");
-         end if;
-         if Execute ("eqri", Sample.Before, A, B, C) = Sample.After then
-            Match_Count := Match_Count + 1;
-            Possible_Opcodes.Insert ("eqri");
-         end if;
-         if Execute ("eqrr", Sample.Before, A, B, C) = Sample.After then
-            Match_Count := Match_Count + 1;
-            Possible_Opcodes.Insert ("eqrr");
-         end if;
-
+         for I in Opcode_Lookup'Range loop
+            declare 
+               Op : constant Op_String := Opcode_Lookup (I);
+            begin
+               if Execute (Op, Sample.Before, A, B, C) = Sample.After then
+                  Match_Count := Match_Count + 1;
+                  Possible_Opcodes.Insert (Op);
+               end if;
+            end;
+         end loop;
          Opcodes (Sample.Instr (0)).Append (Possible_Opcodes);
          if Match_Count >= 3 then
             Part1_Count := Part1_Count + 1;
