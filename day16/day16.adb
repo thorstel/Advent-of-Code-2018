@@ -79,14 +79,14 @@ procedure Day16 is
       return Result;
    end Bori;
 
-   function Setr (Reg : Registers; A, B, C : Natural) return Registers is
+   function Setr (Reg : Registers; A, C : Natural) return Registers is
       Result : Registers := Reg;
    begin
       Result (C) := Result (A);
       return Result;
    end Setr;
 
-   function Seti (Reg : Registers; A, B, C : Natural) return Registers is
+   function Seti (Reg : Registers; A, C : Natural) return Registers is
       Result : Registers := Reg;
    begin
       Result (C) := A;
@@ -178,8 +178,8 @@ procedure Day16 is
          when bani => return Bani (Reg, A, B, C);
          when borr => return Borr (Reg, A, B, C);
          when bori => return Bori (Reg, A, B, C);
-         when setr => return Setr (Reg, A, B, C);
-         when seti => return Seti (Reg, A, B, C);
+         when setr => return Setr (Reg, A,    C);
+         when seti => return Seti (Reg, A,    C);
          when gtir => return Gtir (Reg, A, B, C);
          when gtri => return Gtri (Reg, A, B, C);
          when gtrr => return Gtrr (Reg, A, B, C);

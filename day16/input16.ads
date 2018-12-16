@@ -796,7 +796,7 @@ package Input16 is
       (Before => (1, 1, 2, 1), Instr => (10, 3, 2, 0), After => (1, 1, 2, 1)),
       (Before => (2, 0, 1, 1), Instr => (3,  0, 3, 3), After => (2, 0, 1, 1)));
 
-   Part2_Input : array (Positive range <>) of Registers :=
+   Part2_Input : constant array (Positive range <>) of Registers :=
      ((8,  0, 0, 2),
       (5,  2, 2, 2),
       (6,  3, 1, 1),
