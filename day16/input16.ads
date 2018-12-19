@@ -1,6 +1,8 @@
+with Opcode_Helper;
+
 package Input16 is
 
-   type Registers is array (Natural range 0 .. 3) of Natural;
+   package OH is new Opcode_Helper (Register_Size => 4); use OH;
 
    type Sample_Record is record
       Before : Registers;
