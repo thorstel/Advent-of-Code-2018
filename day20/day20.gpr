@@ -1,0 +1,8 @@
+project day20 is
+    for Object_Dir use "obj";
+    for Main use ("day20.adb");
+    for Exec_Dir use ".";
+    package Compiler is
+       for Switches ("Ada") use ("-Wall", "-g", "-O2");
+    end Compiler;
+end day20;
