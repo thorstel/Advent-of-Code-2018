@@ -3,9 +3,13 @@ with Ada.Containers.Hashed_Sets,
      Ada.Containers.Ordered_Maps,
      Ada.Containers.Vectors;      use Ada.Containers;
 with Ada.Text_IO;                 use Ada.Text_IO;
-with Input;                       use Input;
 
 procedure Day07 is
+
+   type Edge_Record is record
+      From : Character;
+      To   : Character;
+   end record;
 
    function Edge_Hash (Edge : Edge_Record) return Hash_Type
    is (Character'Pos (Edge.From) + Character'Pos (Edge.To));
@@ -64,19 +68,25 @@ procedure Day07 is
    Incoming_Edges    : Node_Maps.Map;
    No_Incoming_Edges : Node_Sets.Set;
    All_Edges         : Edge_Sets.Set;
-
+   File              : File_Type;
 begin
-
    -- Input Setup
-   for Input of Inputs loop
-      All_Edges.Insert (Input);
-      if not Incoming_Edges.Contains (Input.To) then
-         Incoming_Edges.Insert (Input.To, 1);
-      else
-         Incoming_Edges.Replace
-           (Input.To, Incoming_Edges.Element (Input.To) + 1);
-      end if;
+   Open (File, In_File, "input.txt");
+   while not End_Of_File (File) loop
+      declare
+         Line : constant String      := Get_Line (File);
+         Edge : constant Edge_Record := (Line (6), Line (37));
+      begin
+         All_Edges.Insert (Edge);
+         if not Incoming_Edges.Contains (Edge.To) then
+            Incoming_Edges.Insert (Edge.To, 1);
+         else
+            Incoming_Edges.Replace
+              (Edge.To, Incoming_Edges.Element (Edge.To) + 1);
+         end if;
+      end;
    end loop;
+   Close (File);
 
    for I in Character'Pos ('A') .. Character'Pos ('Z') loop
       if not Incoming_Edges.Contains (Character'Val (I)) then
