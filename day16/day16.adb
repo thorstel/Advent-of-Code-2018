@@ -1,6 +1,7 @@
 with Ada.Containers.Ordered_Sets,
      Ada.Containers.Vectors; use Ada.Containers;
 with Ada.Text_IO;            use Ada.Text_IO;
+with Interfaces;             use Interfaces;
 with Input16;                use Input16, Input16.OH;
 
 procedure Day16 is
@@ -16,8 +17,8 @@ procedure Day16 is
 
    Opcodes       : array (Natural range 0 .. 15) of String_Set_Vectors.Vector;
    Opcode_Lookup : array (Natural range 0 .. 15) of Op_String :=
-     ("addr", "addi", "mulr", "muli", "banr", "bani", "borr", "bori", "setr",
-      "seti", "gtir", "gtri", "gtrr", "eqir", "eqri", "eqrr");
+     ("addr", "addi", "mulr", "muli", "banr", "bani", "borr", "bori",
+      "setr", "seti", "gtir", "gtri", "gtrr", "eqir", "eqri", "eqrr");
 
    Part1_Count : Natural := 0;
 begin
@@ -25,9 +26,9 @@ begin
    for I in Part1_Input'Range loop
       declare
          Sample           : constant Sample_Record := Part1_Input (I);
-         A                : constant Natural       := Sample.Instr (1);
-         B                : constant Natural       := Sample.Instr (2);
-         C                : constant Natural       := Sample.Instr (3);
+         A                : constant Unsigned_64   := Sample.Instr (1);
+         B                : constant Unsigned_64   := Sample.Instr (2);
+         C                : constant Unsigned_64   := Sample.Instr (3);
          Match_Count      : Natural                := 0;
          Possible_Opcodes : String_Sets.Set;
       begin
@@ -42,7 +43,7 @@ begin
                end if;
             end;
          end loop;
-         Opcodes (Sample.Instr (0)).Append (Possible_Opcodes);
+         Opcodes (Natural (Sample.Instr (0))).Append (Possible_Opcodes);
          if Match_Count >= 3 then
             Part1_Count := Part1_Count + 1;
          end if;
@@ -94,14 +95,14 @@ begin
    begin
       for I in Part2_Input'Range loop
          declare
-            Op : constant Natural := Part2_Input (I) (0);
-            A  : constant Natural := Part2_Input (I) (1);
-            B  : constant Natural := Part2_Input (I) (2);
-            C  : constant Natural := Part2_Input (I) (3);
+            Op : constant Natural     := Natural (Part2_Input (I) (0));
+            A  : constant Unsigned_64 := Part2_Input (I) (1);
+            B  : constant Unsigned_64 := Part2_Input (I) (2);
+            C  : constant Unsigned_64 := Part2_Input (I) (3);
          begin
             Reg := Execute_Instruction (Opcode_Lookup (Op), Reg, A, B, C);
          end;
       end loop;
-      Put_Line ("Part 2 =" & Natural'Image (Reg (3)));
+      Put_Line ("Part 2 =" & Unsigned_64'Image (Reg (3)));
    end;
 end Day16;
