@@ -23,3 +23,4 @@ The following solutions do not process the original input files:
 - Day 16
 - Day 17
 - Day 21
+- Day 24
