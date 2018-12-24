@@ -30,10 +30,10 @@ procedure Day24 is
      (G1.Initiative < G2.Initiative);
 
    procedure Initiative_Sort is new Ada.Containers.Generic_Array_Sort
-     (Index_Type  => Positive,
+     (Index_Type   => Positive,
       Element_Type => Group_Type,
-      Array_Type  => Group_Array,
-      "<"         => Lesser_Initiative);
+      Array_Type   => Group_Array,
+      "<"          => Lesser_Initiative);
 
    function Greater_Power (G1, G2 : Group_Type) return Boolean is
      (Eff_Pow (G1) > Eff_Pow (G2));
